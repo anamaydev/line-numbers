@@ -129,7 +129,7 @@ export default class LineNumbersPlugin extends Plugin {
             return this.settings.mode !== mode;
 
           this.settings.mode = mode;
-          this.saveSettings();
+          void this.saveSettings();
           return;
         },
       });
@@ -146,7 +146,7 @@ export default class LineNumbersPlugin extends Plugin {
             return !!markdownView && this.settings.showCursorPositionInStatusBar !== value;
 
           this.settings.showCursorPositionInStatusBar = value;
-          this.saveSettings();
+          void this.saveSettings();
           this.updateStatusBarVisibility();
           return;
         },});
