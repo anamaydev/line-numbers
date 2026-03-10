@@ -40,9 +40,9 @@ export class LineNumbersSettingTab extends PluginSettingTab {
 					.addOption("hybrid", "Hybrid")
 					.setValue(this.plugin.settings.mode)
 					/* persists the selected mode to settings on change */
-					.onChange(async (value) => {
+					.onChange((value) => {
 						this.plugin.settings.mode = value as "absolute" | "relative" | "hybrid";
-						await this.plugin.saveSettings();
+						void this.plugin.saveSettings();
 
 						/* notify the editor that extensions need rebuilding
 						* so the gutter immediately reflects the new line number mode
@@ -59,9 +59,9 @@ export class LineNumbersSettingTab extends PluginSettingTab {
 				toggle
 					.setValue(this.plugin.settings.showCursorPositionInStatusBar)
 					/* persists the toggle state to settings on change */
-					.onChange(async (value) => {
+					.onChange((value) => {
 						this.plugin.settings.showCursorPositionInStatusBar = value;
-						await this.plugin.saveSettings();
+						void this.plugin.saveSettings();
 						this.plugin.updateStatusBarVisibility();
 					})
 			);

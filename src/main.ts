@@ -1,6 +1,6 @@
 import {MarkdownView, Plugin} from "obsidian";
 import {ViewUpdate, ViewPlugin, EditorView, gutter, GutterMarker, BlockInfo} from "@codemirror/view";
-import {StateField, EditorState, Transaction, Text} from "@codemirror/state";
+import {StateField, EditorState, Transaction, Text, Extension} from "@codemirror/state";
 import { LineNumbersSettings, DEFAULT_SETTINGS, LineNumbersSettingTab} from "./settings";
 
 /* data representing the cursor's current position in the editor */
@@ -102,7 +102,7 @@ const createCursorPositionPlugin = (statusBarItemElement: HTMLElement) => {
 export default class LineNumbersPlugin extends Plugin {
   statusBarItemElement: HTMLElement;
   settings: LineNumbersSettings;
-  private editorExtensions: any[] = [];
+  private editorExtensions: Extension[] = [];
 
   async onload(){
     /* load the settings when the plugin loads */
