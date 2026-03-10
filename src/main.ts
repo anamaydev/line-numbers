@@ -107,6 +107,46 @@ export default class LineNumbersPlugin extends Plugin {
     /* create status bar item */
     this.statusBarItemElement = this.addStatusBarItem();
 
+    const lineNumberModes: Array<"absolute" | "relative" | "hybrid"> = [
+      "absolute", "relative", "hybrid"
+    ];
+    const cursorPositionState = new Map<string, boolean>([
+      ["enable", true], ["disable", false]
+    ]);
+
+    /* commands for toggling line numbers mode */
+    lineNumberModes.forEach((mode) => {
+      this.addCommand({
+        id: `set-line-numbering-${mode}`,
+        name: `Set line numbering: ${mode}`,
+        checkCallback: (checking: boolean) => {
+          if (checking)
+            return this.settings.mode !== mode;
+
+          this.settings.mode = mode;
+          this.saveSettings();
+          return;
+        },
+      });
+    });
+
+    /* command for toggling cursor position */
+    cursorPositionState.forEach((value, key) => {
+      this.addCommand({
+        id: `${key}-cursor-position`,
+        name: `${key.charAt(0).toUpperCase()}${key.slice(1)} cursor position`,
+        checkCallback: (checking: boolean) => {
+          const markdownView = this.app.workspace.getActiveViewOfType(MarkdownView);
+          if (checking)
+            return !!markdownView && this.settings.showCursorPositionInStatusBar !== value;
+
+          this.settings.showCursorPositionInStatusBar = value;
+          this.saveSettings();
+          this.updateStatusBarVisibility();
+          return;
+        },});
+    });
+
     /* register CodeMirror extensions for cursor tracking, status bar, and line gutter */
     this.registerEditorExtension([
       cursorPositionField,
