@@ -231,4 +231,8 @@ export default class LineNumbersPlugin extends Plugin {
   async saveSettings() {
     await this.saveData(this.settings);
   }
-};
+
+  onunload() {
+    this.statusBarItemElement.remove();
+  }
+}
