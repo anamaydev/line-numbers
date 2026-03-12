@@ -19,9 +19,12 @@ An Obsidian plugin that enhances the editor with customizable line numbers and a
 
 ## Screenshots
 ### Line Number Modes
-![Absolute Mode](screenshots/absolute-line-numbers.gif)
-![Relative Mode](screenshots/relative-line-numbers.gif)
+**Hybrid**
 ![Hybrid Mode](screenshots/hybrid-line-numbers.gif)
+**Relative**
+![Relative Mode](screenshots/relative-line-numbers.gif)
+**Absolute**
+![Absolute Mode](screenshots/absolute-line-numbers.gif)
 
 ### Cursor's Position In Status Bar
 ![Cursor's Position](screenshots/cursor-position-statusbar.gif)
